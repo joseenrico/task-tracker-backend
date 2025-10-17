@@ -14,9 +14,8 @@ if __name__ == '__main__':
     if not hasattr(sys, '_called_from_reload'):
         try:
             AuthService.create_default_user()
-            print("Default user created (username: admin, password: admin123)")
         except Exception as e:
-            print(f"⚠️  User creation: {e}")
+            print(f"User creation: {e}")
 
     print("Starting Flask...")
     print(f"Environment: {env}")
