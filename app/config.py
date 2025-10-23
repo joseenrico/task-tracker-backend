@@ -19,10 +19,12 @@ class Config:
     def DATABASE_URL(self):
         return f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
     
-    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:5173').split(',')
-    
-    DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
-    TESTING = False
+    SQLALCHEMY_DATABASE_URI = property(lambda self: self.DATABASE_URL)
+
+    CORS_ORIGINS = [
+        "https://task-tracker-front-delta.vercel.app",
+        "http://localhost:5173"
+    ]
 
 class DevelopmentConfig(Config):
     """Development configuration"""
